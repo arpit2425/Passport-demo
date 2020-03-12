@@ -9,8 +9,10 @@ passport.use(
       clientSecret: keys.google.clientSecret,
       callbackURL: "/auth/google/redirect"
     },
-    () => {
+
+    (accessToken, requestToken, profile, done) => {
       console.log("Pasport complete");
+      console.log(profile);
     }
   )
 );
