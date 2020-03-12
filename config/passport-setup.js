@@ -27,11 +27,16 @@ passport.use(
         } else {
           new User({
             username: profile.displayName,
-            googleId: profile.id
+            googleId: profile.id,
+            photo: profile.photos[0].value
           })
             .save()
             .then(res => {
+              console.log(res);
               done(null, res);
+            })
+            .catch(err => {
+              console.log(err);
             });
         }
       });

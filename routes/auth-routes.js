@@ -7,8 +7,7 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 router.get("/logout", (req, res) => {
   res.send("loging out");
 });
-router.get(
-  "/google/redirect",
-  passport.authenticate("google", (req, res) => {})
-);
+router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+  res.redirect("/profile");
+});
 module.exports = router;
