@@ -1,6 +1,7 @@
 const passport = require("passport");
 const googleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("./keys");
+const User = require("../models/user-model");
 
 passport.use(
   new googleStrategy(
@@ -11,8 +12,20 @@ passport.use(
     },
 
     (accessToken, requestToken, profile, done) => {
-      console.log("Pasport complete");
-      console.log(profile);
+      User.findOne({ googleId: profile.id }).then(user => {
+        if (user) {
+          console.log("user already registered");
+        } else {
+          new User({
+            username: profile.displayName,
+            googleId: profile.id
+          })
+            .save()
+            .then(res => {
+              console.log(res);
+            });
+        }
+      });
     }
   )
 );
