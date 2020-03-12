@@ -26,7 +26,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", { user: req.user });
 });
 app.use("/auth", authRoute);
 app.use("/profile", profileRoute);

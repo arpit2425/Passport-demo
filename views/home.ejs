@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Auth</title>
+    <meta charset="utf-8" />
+    <title>OAuth Tutorials</title>
     <style>
       body {
         font-family: arial;
@@ -43,17 +42,19 @@
   <body>
     <nav>
       <ul>
-        <li><a href="/auth/logout">Logout</a></li>
+        <% if (user) { %>
+        <li><a href="/auth/logout">Log out</a></li>
+        <% } else { %>
         <li><a href="/auth/login">Login</a></li>
+        <% } %>
         <li><a href="/">Homepage</a></li>
+        <li><a href="/profile">Profile</a></li>
       </ul>
     </nav>
     <header>
-      <h1>OAuth Testing</h1>
+      <h1>Passport Authentication Demo</h1>
       <h2>Homepage</h2>
     </header>
-    <main>
-      <p>Some random text</p>
-    </main>
+    <main></main>
   </body>
 </html>
